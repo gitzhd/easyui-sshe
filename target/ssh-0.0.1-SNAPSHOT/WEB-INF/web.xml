@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>用友政务</display-name>
+  <description>政府采购电子商城</description>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring.xml,classpath:spring-hibernate.xml</param-value>
+  </context-param>
+  <!-- spring监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 修复数据库监听器 -->
+  <listener>
+  	 <listener-class>
+  	 	sy.listener.RepairListener
+  	 </listener-class>
+  </listener>
+  	<!-- openSessionInView配置 -->
+	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+ <!--  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener> -->
+  
+  <!--  
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>util.filter.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+   <filter>
+    <filter-name>BuyerLogonValidateFilter</filter-name>
+    <filter-class>util.filter.BuyerLogonValidateFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BuyerLogonValidateFilter</filter-name>
+    <url-pattern>/front/customer/*</url-pattern>
+  </filter-mapping>
+ 	<filter-mapping>
+    <filter-name>BuyerLogonValidateFilter</filter-name>
+    <url-pattern>/experts/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>StoreLogonValidateFilter</filter-name>
+    <filter-class>util.filter.StoreLogonValidateFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>StoreLogonValidateFilter</filter-name>
+    <url-pattern>/front/store/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>hibernateFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    <init-param>
+      <param-name>excludeSuffixs</param-name>
+      <param-value>js,css,jpg,gif,png,bmp,jpeg</param-value>
+    </init-param>
+    <init-param>
+      <param-name>flushMode</param-name>
+      <param-value>AUTO</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>hibernateFilter</filter-name>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>hibernateFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+   -->
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>
+  		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+  	</filter-class>
+  </filter>
+  
+  <filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+ </filter-mapping>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>*.action</url-pattern>
+   <!--  <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher> -->
+  </filter-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <distributable/>
+</web-app>
