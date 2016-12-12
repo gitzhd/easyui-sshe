@@ -12,9 +12,7 @@
   </listener>
   <!-- 修复数据库监听器 -->
   <listener>
-  	 <listener-class>
-  	 	sy.listener.RepairListener
-  	 </listener-class>
+  	 <listener-class>sy.listener.RepairListener</listener-class>
   </listener>
   	<!-- openSessionInView配置 -->
 	<filter>

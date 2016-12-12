@@ -21,5 +21,7 @@ public interface BaseDaoI<T> {
 	public List<T> findPage(String hsql,Integer page,Integer rows);
 	public Integer count(String hsql);
 	public Integer count(String hsql,Map<String,Object> params);
+	//纯 sql  执行 
+	public List<Map<String, Object>> findListMapBySql(String sql);
 
 }

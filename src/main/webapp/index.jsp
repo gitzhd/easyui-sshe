@@ -72,21 +72,7 @@ $(function(){
 
 </script>
 
-<!-- tabs 方法 -->
-<script type="text/javascript">
-	function addTab(opts){
-		vat t = $('#index_centerTabs');
-		if(t.tabs('exists',opts.title)){
-			//已存在的 被选中
-			t.tabs('select',opts.title);
-		}else{
-			t.tabs('add',opts);
-		}
-		
-		
-	}
-	
-</script>
+
 
 <title>login</title>
 
@@ -96,33 +82,12 @@ $(function(){
     <div data-options="region:'north',title:'North Title',split:true" style="height:100px;"></div>   
     <div data-options="region:'south',title:'South Title',split:true" style="height:100px;"></div>   
     <div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>   
-    <div data-options="region:'west',title:'West',split:true" style="width:100px;">
-    	  <div class="easyui-panel" data-options="title:'功能菜单',border:false,fit:true">
-    		 <div class="easyui-accordion" data-options="fit:true,border:false">
-    			<div title="系统菜单" data-options="iconCls:'icon-save'" style="overflow:outo;padding:10px">
-    				<ul id="tree" class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!tree.action',
-    				 lines:true,
-    				 onClick:function(node){
-    				 	if(node.attributes.url){
-    				 		var url = '${pageContext.request.contextPath}'+node.attributes.url;
-    				 		addTab({title:node.text,href:url,closable:true});
-    				 	}
-    				 }
-    				">   
-					</ul> 
-    			</div>
-    			 <div title="title2" data-options="iconCls:'icon-edit'" style="overflow:outo;padding:10px">
-    			
-    			</div>
-    		 </div>
-    		</div>
+    <div data-options="region:'west',title:'West',split:true" style="width:200px;">
+    	<jsp:include page="layout/leftmenu.jsp"></jsp:include>
     	</div>
     </div>   
-    <div data-options="region:'center',title:'后台管理系统'" class="easyui-tabs"  style="padding:5px;background:#eee;">
-    		<div title="首页">   
-        		tab1    
-   		 	</div>	
-    	   
+    <div  data-options="region:'center',title:'后台管理系统'" >
+    	<jsp:include page="layout/centerView.jsp"></jsp:include>
     </div>   
 	<jsp:include page="user/login.jsp"></jsp:include>
 	<jsp:include page="user/reg.jsp"></jsp:include>

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.fastjson.JSON;
 import com.opensymphony.xwork2.ModelDriven;
 
+import sy.model.DataGrid;
 import sy.model.Tuser;
 import sy.pageModel.MyJson;
 import sy.pageModel.User;
@@ -54,6 +55,21 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		}
 		super.writeJson(json);
 	}
+	public void add() throws IOException{
+		
+		 
+		
+		MyJson json = new MyJson();
+		try {
+			userService.save(user);
+			json.setSuccess(true);
+			json.setMsg("添加成功");
+		} catch (Exception e) {
+			json.setMsg(e.getMessage().toString());
+		}
+		super.writeJson(json);
+	}
+	
 
 	public void login(){
 		User u=userService.login(user);
@@ -68,6 +84,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		}
 		super.writeJson(j);
 	}
+	
+	//填充datagrid 数据
+	public void  datagrid(){
+		DataGrid data = userService.dataGrid(user);
+		super.writeJson(data);
+	}
+	
+	// 得到获取action
+	
+	
 	@Override
 	public User getModel() {
 		return user;

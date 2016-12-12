@@ -28,7 +28,18 @@
 	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
 
 	<package name="basePackage" extends="struts-default">
-
+			<interceptors>
+				<interceptor name="encodingInterceptor" class="sy.interceptor.EncodingInterceptor" />
+					<interceptor-stack name="encodingStack">
+						<interceptor-ref name="defaultStack"/> 
+						<interceptor-ref name="encodingInterceptor"/>
+						<!-- // <param name="excludeMethods">save,reg,update</param>  -->  
+						 
+					</interceptor-stack>
+			</interceptors>
+			<!--  全局拦截器栈 -->
+	  <default-interceptor-ref name="encodingStack" />
+			
 	</package>
 
 </struts>
